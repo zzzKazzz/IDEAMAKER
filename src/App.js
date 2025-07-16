@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Shuffle, Heart, Zap, X } from 'lucide-react';
+import { defaultLikeWords, defaultSkillWords } from './defaultWords';
 
 export default function WordCombinationApp() {
   const [likeInput, setLikeInput] = useState('');
   const [skillInput, setSkillInput] = useState('');
-  const [likeWords, setLikeWords] = useState([]);
-  const [skillWords, setSkillWords] = useState([]);
+  const [likeWords, setLikeWords] = useState(defaultLikeWords);
+  const [skillWords, setSkillWords] = useState(defaultSkillWords);
   const [combination, setCombination] = useState('');
   const [combinationType, setCombinationType] = useState('');
 
@@ -93,11 +94,11 @@ export default function WordCombinationApp() {
 
     let typeText = '';
     if (word1IsLike && word2IsLike) {
-      typeText = '好きなこと × 好きなこと';
+      typeText = '普段していること × 普段していること';
     } else if (!word1IsLike && !word2IsLike) {
-      typeText = 'できること × できること';
+      typeText = '需要がありそうなこと × 需要がありそうなこと';
     } else {
-      typeText = '好きなこと × できること';
+      typeText = '普段していること × 需要がありそうなこと';
     }
 
     setCombination(`${selectedWords[0]} × ${selectedWords[1]}`);
@@ -133,7 +134,7 @@ export default function WordCombinationApp() {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-            🎯 好きなこと × できること 組み合わせアプリ
+            🎯 普段していること × 需要がありそうなこと 組み合わせアプリ
           </h1>
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
@@ -141,7 +142,7 @@ export default function WordCombinationApp() {
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-pink-700 flex items-center gap-2">
                 <Heart className="text-pink-600" size={24} />
-                好きなこと
+                普段していること
               </h2>
               <div className="flex gap-3">
                 <input
@@ -205,7 +206,7 @@ export default function WordCombinationApp() {
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-blue-700 flex items-center gap-2">
                 <Zap className="text-blue-600" size={24} />
-                できること
+                需要がありそうなこと
               </h2>
               <div className="flex gap-3">
                 <input
@@ -276,7 +277,7 @@ export default function WordCombinationApp() {
               <Heart size={24} />
               <span>×</span>
               <Zap size={24} />
-              好きなこと × できること
+              普段していること × 需要がありそうなこと
             </button>
 
             <button
@@ -292,8 +293,8 @@ export default function WordCombinationApp() {
           {/* 結果表示 */}
           {combination && (
             <div className={`border rounded-lg p-6 text-center ${combinationType === 'error'
-                ? 'bg-red-100 border-red-300'
-                : 'bg-gradient-to-r from-yellow-100 to-orange-100 border-yellow-300'
+              ? 'bg-red-100 border-red-300'
+              : 'bg-gradient-to-r from-yellow-100 to-orange-100 border-yellow-300'
               }`}>
               <h3 className="text-lg font-semibold text-gray-700 mb-2">
                 {combinationType === 'error' ? 'エラー:' : '生成された組み合わせ:'}
