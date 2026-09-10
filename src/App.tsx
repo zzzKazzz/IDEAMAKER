@@ -213,7 +213,7 @@ export default function App() {
             <p className="caption">{mix.map((part) => part.short).join(' × ')}</p>
           </>
         ) : (
-          <p className="placeholder">No <Idea></Idea></p>
+          <p className="placeholder">まだ混ぜていない</p>
         )}
       </section>
 
